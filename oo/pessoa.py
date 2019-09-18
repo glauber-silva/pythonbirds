@@ -1,19 +1,22 @@
+from typing import List
+
+
 class Pessoa:
-    def __init__(self, nome: str = None, idade: int = 35):
+    def __init__(self, *filhos, nome: str = None, idade: int = 35):
         self.idade = idade
         self.nome = nome
-
+        self.filhos = list(filhos)
 
     def cumprimentar(self):
         return f"Olá {id(self)}"
 
 
 if __name__ == '__main__':
-    p = Pessoa('Lucio')
-    print(Pessoa.cumprimentar(p))
-    print(id(p))
-    print(p.cumprimentar())
-    print(p.nome)
-    p.nome = "Glauber"
-    print(p.nome)
-    print(p.idade)
+    dylan = Pessoa(nome='Dylan')
+    glauber = Pessoa(dylan, nome='Glauber')
+    print(Pessoa.cumprimentar(glauber))
+    glauber.nome = "Glauber"
+    print(glauber.nome)
+    print(glauber.idade)
+    for filho in glauber.filhos:
+        print(filho.nome)
