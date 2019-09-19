@@ -20,3 +20,7 @@ if __name__ == '__main__':
     print(glauber.idade)
     for filho in glauber.filhos:
         print(filho.nome)
+    glauber.sobrenome = 'Silva'
+    del(glauber.filhos)
+    print(glauber.__dict__)
+    print(dylan.__dict__)
