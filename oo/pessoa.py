@@ -2,6 +2,8 @@ from typing import List
 
 
 class Pessoa:
+    olhos = 2
+
     def __init__(self, *filhos, nome: str = None, idade: int = 35):
         self.idade = idade
         self.nome = nome
@@ -24,3 +26,8 @@ if __name__ == '__main__':
     del(glauber.filhos)
     print(glauber.__dict__)
     print(dylan.__dict__)
+    print(Pessoa.olhos)
+    glauber.olhos = 1
+    print(Pessoa.olhos)
+    print(glauber.olhos)
+    print(dylan.olhos)
