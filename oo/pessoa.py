@@ -1,42 +1,45 @@
+from __future__ import annotations
 from typing import List
 
 
 class Pessoa:
     olhos = 2
 
-    def __init__(self, *filhos, nome: str = None, idade: int = 35):
-        self.idade = idade
+    def __init__(self, *filhos:Pessoa, nome: str = None, idade=35):
         self.nome = nome
+        self.idade = idade
         self.filhos = list(filhos)
 
-    def cumprimentar(self):
-        return f"Olá {id(self)}"
+    def cumprimentar(self) -> str:
+        return f'Ola {id(self)}'
+
 
     @staticmethod
     def metodo_estatico():
         return 42
 
     @classmethod
-    def nome_e_atributos_de_classe(cls):
-        return f'{cls.__name__} - olhos {Pessoa.olhos}'
+    def nome_e_atributos_de_class(cls):
+        return f'{cls.olhos} - olhos'
+
 
 if __name__ == '__main__':
-    dylan = Pessoa(nome='Dylan')
-    glauber = Pessoa(dylan, nome='Glauber')
+    ulisses = Pessoa(nome='Ulisses')
+    glauber = Pessoa(ulisses ,nome='Glauber')
     print(Pessoa.cumprimentar(glauber))
-    glauber.nome = "Glauber"
+    print(id(glauber))
+    print(id(ulisses))
+    print(glauber.cumprimentar())
     print(glauber.nome)
     print(glauber.idade)
+    print(glauber.filhos)
+
     for filho in glauber.filhos:
         print(filho.nome)
-    glauber.sobrenome = 'Silva'
-    del(glauber.filhos)
+
+    ulisses.sobrenome = "Nogueira"
     print(glauber.__dict__)
-    print(dylan.__dict__)
-    print(Pessoa.olhos)
-    glauber.olhos = 1
-    print(Pessoa.olhos)
-    print(glauber.olhos)
-    print(dylan.olhos)
-    print(Pessoa.metodo_estatico(), glauber.metodo_estatico())
-    print(Pessoa.nome_e_atributos_de_classe(), glauber.nome_e_atributos_de_classe())
+    print(ulisses.__dict__)
+    del ulisses.sobrenome
+    print(ulisses.__dict__)
+    print(Pessoa.nome_e_atributos_de_class(), glauber.nome_e_atributos_de_class())
